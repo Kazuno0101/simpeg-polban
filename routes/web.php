@@ -78,3 +78,8 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
+
+Route::get('/simpeg/pensiun', $controller_path . '\simpeg\simpeg@pensiun')->name('simpeg-pensiun');
+Route::get('/simpeg/kenaikan', $controller_path . '\simpeg\simpeg@kenaikan')->name('simpeg-kenaikan');
+Route::get('/simpeg/mutasi', $controller_path . '\simpeg\simpeg@mutasi')->name('simpeg-mutasi');
+Route::get('/simpeg/pemberhentian', $controller_path . '\simpeg\simpeg@pemberhentian')->name('simpeg-pemberhentian');
