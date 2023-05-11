@@ -3,6 +3,25 @@
 @section('title', 'Kelola Dosen')
 
 @section('content')
+
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Sukses!</strong> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <li>
+                @foreach($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </li>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <h4 class="pt-3 fw-bold">
         <span class="text-muted fw-light">Kelola Dosen</span>
     </h4>
@@ -23,8 +42,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Nama</th>
+                        <th>NIDN</th>
                         <th>NIP</th>
+                        <th>Nama</th>
                         <th>Unit Kerja</th>
                         <th>Jabatan</th>
                         <th>Aksi</th>
@@ -33,22 +53,19 @@
                 <tbody class="table-border-bottom-0">
                     @foreach ($dosen as $item)
                         <tr>
-                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->nidn }}</td>
                             <td>{{ $item->nip ? $item->nip : '-' }}</td>
+                            <td>{{ $item->nama }}</td>
                             <td>{{ $item->unitKerja->nama }}</td>
                             <td>{{ ($item->jabatanFungsional ? $item->jabatanFungsional->nama : '') . ';' . ($item->jabatanStruktural ? $item->jabatanStruktural->nama : '') }}
                             </td>
                             <td>
-                                <div class="dropdown">
-                                    <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                            Delete</a>
-                                    </div>
-                                </div>
+                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#editModal{{ $item->id }}">Edit</button>
+                                @include('content.simpeg.dosen.modalEdit')
+                                <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal{{ $item->id }}">Hapus</button>
+                                @include('content.simpeg.dosen.modalHapus')
                             </td>
                         </tr>
                     @endforeach

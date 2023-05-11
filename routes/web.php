@@ -85,3 +85,5 @@ Route::get('/simpeg/mutasi', $controller_path . '\simpeg\mutasi\mutasi@index')->
 Route::get('/simpeg/pemberhentian', $controller_path . '\simpeg\pemberhentian\pemberhentian@index')->name('simpeg-pemberhentian');
 Route::get('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@index')->name('simpeg-dosen');
 Route::post('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@store')->name('dosen.store');
+Route::put('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@update')->name('dosen.update');
+Route::delete('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@destroy')->name('dosen.destroy');

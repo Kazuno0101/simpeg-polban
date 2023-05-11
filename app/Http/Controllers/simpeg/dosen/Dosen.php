@@ -37,7 +37,8 @@ class Dosen extends Controller
         $request->validate([
             'nama' => 'required',
             'nidn' => 'required|unique:dosen',
-            'nip' => 'unique:dosen',
+            // nip is nullable but unique
+            'nip' => 'nullable|unique:dosen',
             'unit_kerja_id' => 'required',
             'jabatan_fungsional_id' => 'required|exists:jabatan,id',
             'jabatan_struktural_id' => 'exists:jabatan,id',
@@ -51,28 +52,6 @@ class Dosen extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -82,6 +61,23 @@ class Dosen extends Controller
     public function update(Request $request, $id)
     {
         //
+        $dosen = ModelsDosen::findOrFail($id);
+
+        // validate
+        $request->validate([
+            'nama' => 'required',
+            'nidn' => 'required|unique:dosen,nidn,' . $dosen->id,
+            'nip' => 'nullable|unique:dosen,nip,' . $dosen->id,
+            'unit_kerja_id' => 'required',
+            'jabatan_fungsional_id' => 'required|exists:jabatan,id',
+            'jabatan_struktural_id' => 'exists:jabatan,id',
+        ]);
+
+        // update
+        $dosen->update($request->all());
+
+        // redirect
+        return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil diubah');
     }
 
     /**
@@ -93,5 +89,12 @@ class Dosen extends Controller
     public function destroy($id)
     {
         //
+        $dosen = ModelsDosen::findOrFail($id);
+
+        // delete
+        $dosen->delete();
+
+        // redirect
+        return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil dihapus');
     }
 }
