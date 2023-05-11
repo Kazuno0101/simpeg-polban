@@ -44,7 +44,7 @@ class KenaikanJabatan extends Controller
     {
         //
         $pengajuan = PengajuanKenaikanJabatan::findOrFail($id);
-
+        
         // validate
         $request->validate([
             'dosen_id' => 'required',
@@ -54,8 +54,10 @@ class KenaikanJabatan extends Controller
 
         $request->request->add(['jabatan_asal_id' => auth()->user()->dosen->jabatan_fungsional_id]);
 
-        // update
-        $pengajuan->update($request->all());
+        // update without events
+        PengajuanKenaikanJabatan::withoutEvents(function () use ($request, $pengajuan) {
+            $pengajuan->update($request->all());
+        });        
 
         // redirect
         return redirect()->route('simpeg-kenaikan')->with('success', 'Data pengajuan berhasil diubah');

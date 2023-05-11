@@ -33,6 +33,7 @@ class KenaikanJabatanObserver
     public function updated(PengajuanKenaikanJabatan $pengajuanKenaikanJabatan)
     {
         //
+        dd($pengajuanKenaikanJabatan);
     }
 
     /**

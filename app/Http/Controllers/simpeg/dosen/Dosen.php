@@ -65,6 +65,7 @@ class Dosen extends Controller
 
         // validate
         $request->validate([
+            'email' => 'required',
             'nama' => 'required',
             'nidn' => 'required|unique:dosen,nidn,' . $dosen->id,
             'nip' => 'nullable|unique:dosen,nip,' . $dosen->id,
@@ -74,7 +75,16 @@ class Dosen extends Controller
         ]);
 
         // update
-        $dosen->update($request->all());
+        $dosen->email = $request->input('email');
+        if($request->input('password')){
+            $dosen->password = bcrypt($request->input('password'));
+        }
+        $dosen->nama = $request->input('nama');
+        $dosen->nidn = $request->input('nidn');
+        $dosen->nip = $request->input('nip');
+        $dosen->unit_kerja_id = $request->input('unit_kerja_id');
+        $dosen->jabatan_fungsional_id = $request->input('jabatan_fungsional_id');
+        $dosen->jabatan_struktural_id = $request->input('jabatan_struktural_id');
 
         // redirect
         return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil diubah');
