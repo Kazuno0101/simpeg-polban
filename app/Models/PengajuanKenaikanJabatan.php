@@ -11,7 +11,7 @@ class PengajuanKenaikanJabatan extends Model
 
     protected $table = 'pengajuan_kenaikan_jabatan';
 
-    protected $fillable = ['dosen_id', 'jabatan_asal_id', 'jabatan_tujuan_id', 'tanggal_pengajuan', 'alasan', 'status', 'tanggal_validasi'];
+    protected $fillable = ['dosen_id', 'jabatan_asal_id', 'jabatan_tujuan_id', 'tanggal_pengajuan', 'alasan', 'status','tanggal_verifikasi' , 'tanggal_validasi'];
 
     public function dosen()
     {
