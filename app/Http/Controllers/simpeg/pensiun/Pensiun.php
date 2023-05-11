@@ -11,8 +11,9 @@ class Pensiun extends Controller
 {
     public function index()
     {
-        $pengajuan = PengajuanPensiun::all();
-        $dosen = Dosen::all();
-        return view('content.simpeg.pensiun', compact('pengajuan','dosen'));
+        $data['pengajuan'] = PengajuanKenaikanJabatan::all();
+        $data['dosen'] = Dosen::all();
+
+        return view('content.simpeg.pensiun.index', $data);
     }
 }

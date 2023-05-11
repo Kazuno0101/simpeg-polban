@@ -12,9 +12,10 @@ class Mutasi extends Controller
 {
     public function index()
     {
-        $pengajuan = PengajuanMutasi::all();
-        $dosen = Dosen::all();
-        $unit_kerja = UnitKerja::all();
-        return view('content.simpeg.mutasi', compact('pengajuan','dosen','unit_kerja'));
+        $data['pengajuan'] = PengajuanKenaikanJabatan::all();
+        $data['dosen'] = Dosen::all();
+        $data['unit_kerja'] = UnitKerja::all();
+
+        return view('content.simpeg.mutasi.index', $data);
     }
 }
