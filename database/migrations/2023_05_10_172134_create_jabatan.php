@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('jabatan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->enum('tipe', ['struktural', 'fungsional']);
             $table->timestamps();
         });
     }

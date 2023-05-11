@@ -11,15 +11,20 @@ class Dosen extends Model
 
     protected $table = 'dosen';
 
-    protected $fillable = ['nama', 'unit_kerja_id', 'jabatan_id'];
+    protected $fillable = ['nama', 'nip', 'nidn', 'unit_kerja_id', 'jabatan_fungsional_id', 'jabatan_struktural_id'];
 
     public function unitKerja()
     {
         return $this->belongsTo(UnitKerja::class, 'unit_kerja_id');
     }
 
-    public function jabatan()
+    public function jabatanStruktural()
     {
-        return $this->belongsTo(Jabatan::class, 'jabatan_id');
+        return $this->belongsTo(Jabatan::class, 'jabatan_struktural_id');
+    }
+
+    public function jabatanFungsional()
+    {
+        return $this->belongsTo(Jabatan::class, 'jabatan_fungsional_id');
     }
 }

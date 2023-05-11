@@ -32,6 +32,15 @@
       "icon": "menu-icon tf-icons bx bx-crown",
       "slug": "pemberhentian",
       "url": "/simpeg/pemberhentian"
+    },
+    {
+      "menuHeader": "System Setting"
+    },
+    {
+      "name": "Dosen",
+      "icon": "menu-icon tf-icons bx bx-collection",
+      "slug": "Mutasi",
+      "url": "/simpeg/dosen"
     }
   ]
 }

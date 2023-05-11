@@ -15,6 +15,13 @@ class UnitKerjaSeeder extends Seeder
      */
     public function run()
     {
-        UnitKerja::factory()->count(50)->create();
+        // create unit kerja yang ada di kampus polban
+        UnitKerja::create(['nama' => 'Jurusan Teknik Sipil']);
+        UnitKerja::create(['nama' => 'Jurusan Teknik Mesin']);
+        UnitKerja::create(['nama' => 'Jurusan Teknik Elektro']);
+        UnitKerja::create(['nama' => 'Jurusan Teknik Kimia']);
+        UnitKerja::create(['nama' => 'Jurusan Teknik Komputer dan Informatika']);
+        UnitKerja::create(['nama' => 'Jurusan Refrigerasi dan Tata Udara']);
+        UnitKerja::create(['nama' => 'Jurusan Konversi Energi']);
     }
 }
