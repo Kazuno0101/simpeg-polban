@@ -24,7 +24,7 @@ class DosenSeeder extends Seeder
             'nidn' => '1234567890',
             'unit_kerja_id' => 1,
             'jabatan_fungsional_id' => 1,
-            'jabatan_struktural_id' => 1,
+            'jabatan_struktural_id' => 25,
         ]);
     }
 }

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
-Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+
 
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
@@ -80,18 +80,24 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
 
-Route::get('/simpeg/pensiun', $controller_path . '\simpeg\pensiun\pensiun@index')->name('simpeg-pensiun');
-Route::get('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@index')->name('simpeg-kenaikan');
-Route::post('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@store')->name('kenaikan.store');
-Route::put('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@update')->name('kenaikan.update');
-Route::delete('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@destroy')->name('kenaikan.destroy');
-Route::get('/simpeg/mutasi', $controller_path . '\simpeg\mutasi\mutasi@index')->name('simpeg-mutasi');
-Route::get('/simpeg/pemberhentian', $controller_path . '\simpeg\pemberhentian\pemberhentian@index')->name('simpeg-pemberhentian');
-Route::get('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@index')->name('simpeg-dosen');
-Route::post('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@store')->name('dosen.store');
-Route::put('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@update')->name('dosen.update');
-Route::delete('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@destroy')->name('dosen.destroy');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    $controller_path = 'App\Http\Controllers';
+    Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+    Route::get('/simpeg/pensiun', $controller_path . '\simpeg\pensiun\pensiun@index')->name('simpeg-pensiun');
+    Route::get('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@index')->name('simpeg-kenaikan');
+    Route::post('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@store')->name('kenaikan.store');
+    Route::put('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@update')->name('kenaikan.update');
+    Route::delete('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@destroy')->name('kenaikan.destroy');
+    Route::get('/simpeg/mutasi', $controller_path . '\simpeg\mutasi\mutasi@index')->name('simpeg-mutasi');
+    Route::get('/simpeg/pemberhentian', $controller_path . '\simpeg\pemberhentian\pemberhentian@index')->name('simpeg-pemberhentian');
+    Route::get('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@index')->name('simpeg-dosen');
+    Route::post('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@store')->name('dosen.store');
+    Route::put('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@update')->name('dosen.update');
+    Route::delete('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@destroy')->name('dosen.destroy');
+        
+});

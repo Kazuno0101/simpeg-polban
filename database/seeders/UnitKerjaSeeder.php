@@ -23,5 +23,12 @@ class UnitKerjaSeeder extends Seeder
         UnitKerja::create(['nama' => 'Jurusan Teknik Komputer dan Informatika']);
         UnitKerja::create(['nama' => 'Jurusan Refrigerasi dan Tata Udara']);
         UnitKerja::create(['nama' => 'Jurusan Konversi Energi']);
+
+        UnitKerja::create(['nama' => 'Bidang Kepegawaian']);
+        UnitKerja::create(['nama' => 'Bidang Keuangan']);
+        UnitKerja::create(['nama' => 'Bidang Umum']);
+        UnitKerja::create(['nama' => 'Bidang Akademik']);
+        UnitKerja::create(['nama' => 'Bidang Kemahasiswaan']);
+        UnitKerja::create(['nama' => 'Bidang Penelitian dan Pengabdian Kepada Masyarakat']);        
     }
 }
