@@ -4,19 +4,20 @@
   <div class="app-brand demo">
     <a href="{{url('/')}}" class="app-brand-link">
       <span class="app-brand-logo demo">
-        @include('_partials.macros',["width"=>25,"withbg"=>'#696cff'])
+        <img src="{{ asset('assets/img/logo.svg') }}" alt class="h-auto w-px-40">
       </span>
-      <span class="app-brand-text demo menu-text fw-bold ms-2">{{config('variables.templateName')}}</span>
+      <span class="mt-4 h3 demo text-warning fw-bold ms-2">SIMPEG</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none">
-      <i class="bx bx-chevron-left bx-sm align-middle"></i>
+      <img src="{{ asset('assets/img/logo.svg') }}" alt class="h-auto w-px-40">
     </a>
   </div>
 
+
   <div class="menu-inner-shadow"></div>
 
-  <ul class="menu-inner py-1">
+  <ul class="py-1 menu-inner">
     @foreach ($menuData[0]->menu as $menu)
 
     {{-- adding active and open class if child is active --}}

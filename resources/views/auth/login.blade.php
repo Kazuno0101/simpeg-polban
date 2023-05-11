@@ -16,10 +16,8 @@
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
-                            <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo">@include('_partials.macros', ['width' => 25, 'withbg' => '#696cff'])</span>
-                                <span
-                                    class="app-brand-text demo text-body fw-bolder">{{ config('variables.templateName') }}</span>
+                            <a href="{{ url('/') }}" class="gap-2 app-brand-link">
+                                <img src="{{ asset('assets/img/logo.svg') }}" alt class="h-auto w-px-40">
                             </a>
                         </div>
                         <!-- /Logo -->
@@ -47,7 +45,7 @@
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" required autocomplete="current-password" />
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    <span class="cursor-pointer input-group-text"><i class="bx bx-hide"></i></span>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
