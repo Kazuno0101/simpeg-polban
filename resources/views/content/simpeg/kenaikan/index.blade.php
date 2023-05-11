@@ -47,6 +47,7 @@
             <th>Tanggal Pengajuan</th>
             <th>Alasan</th>
             <th>Status</th>
+            <th>Tanggal Verifikasi</th>
             <th>Tanggal Validasi</th>
             <th>Aksi</th>
           </tr>
@@ -69,12 +70,21 @@
                         @break
                     @case('diverifikasi')
                         <span class="badge bg-label-primary me-1">{{ $item->status }}</span>
+                        <br>
+                        <button class="mt-2 btn btn-sm btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#PersetujuanModal{{ $item->id }}">Validasi</button>
+                        @include('content.simpeg.kenaikan.modalPersetujuan')
                         @break
                     @case('pending')
                         <span class="badge bg-label-warning me-1">{{ $item->status }}</span>
+                        <br>
+                        <button class="mt-2 btn btn-sm btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#VerifikasiModal{{ $item->id }}">Verifikasi</button>
+                        @include('content.simpeg.kenaikan.modalVerifikasi')
                         @break
                 @endswitch
               </td>
+              <td>{{ $item->tanggal_verifikasi }}</td>
               <td>{{ $item->tanggal_validasi }}</td>
               <td>
                 <button class="btn btn-sm btn-warning" data-bs-toggle="modal"

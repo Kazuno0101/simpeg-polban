@@ -24,6 +24,7 @@ return new class extends Migration
             $table->dateTime('tanggal_pengajuan');
             $table->text('alasan');
             $table->enum('status', ['ditolak', 'disetujui', 'diverifikasi','pending'])->nullable();
+            $table->dateTime('tanggal_verifikasi')->nullable();
             $table->dateTime('tanggal_validasi')->nullable();
             $table->timestamps();
         });

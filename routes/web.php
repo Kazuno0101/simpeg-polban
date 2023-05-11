@@ -92,6 +92,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@index')->name('simpeg-kenaikan');
     Route::post('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@store')->name('kenaikan.store');
     Route::put('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@update')->name('kenaikan.update');
+    Route::put('/simpeg/kenaikan/verifikasi/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@verifikasi')->name('kenaikan.verifikasi');
+    Route::put('/simpeg/kenaikan/persetujuan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@persetujuan')->name('kenaikan.persetujuan');
     Route::delete('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@destroy')->name('kenaikan.destroy');
     Route::get('/simpeg/mutasi', $controller_path . '\simpeg\mutasi\mutasi@index')->name('simpeg-mutasi');
     Route::get('/simpeg/pemberhentian', $controller_path . '\simpeg\pemberhentian\pemberhentian@index')->name('simpeg-pemberhentian');
