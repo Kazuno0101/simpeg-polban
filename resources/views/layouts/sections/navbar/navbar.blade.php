@@ -67,7 +67,7 @@
                             </div>
                             <div class="flex-grow-1">
                                 <span class="fw-semibold d-block">{{Auth::user()->nama}}</span>
-                                <small class="text-muted">{{Auth::user()->jabatanStruktural->nama.' - '.Auth::user()->jabatanFungsional->nama}}</small>
+                                <small class="text-muted">{{Auth::user()->jabatanStruktural?Auth::user()->jabatanStruktural->nama:''.' - '.Auth::user()->jabatanFungsional->nama}}</small>
                             </div>
                         </div>
                     </a>
