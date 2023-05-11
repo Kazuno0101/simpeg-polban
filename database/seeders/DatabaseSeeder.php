@@ -14,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(30)->create();
+        // run jabatan seeder
+        $this->call(JabatanSeeder::class);
+        // run unit kerja seeder
+        $this->call(UnitKerjaSeeder::class);
+        // run dosen seeder
+        $this->call(DosenSeeder::class);
     }
 }

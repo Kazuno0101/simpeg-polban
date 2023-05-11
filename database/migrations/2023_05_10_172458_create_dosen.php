@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('dosen', function (Blueprint $table) {
             $table->id();            
             $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('nip', 18)->unique()->nullable();
             $table->string('nidn', 10)->unique();
             $table->unsignedBigInteger('unit_kerja_id');

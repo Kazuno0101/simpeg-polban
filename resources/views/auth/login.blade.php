@@ -23,15 +23,14 @@
                             </a>
                         </div>
                         <!-- /Logo -->
-                        <h4 class="mb-2">Welcome to {{ config('variables.templateName') }}! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <h4 class="mb-2">Selamat datang di SIMPEG POLBAN! 👋</h4>
 
                         <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email or Username</label>
+                                <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    id="email" name="email" placeholder="Enter your email or username"
+                                    id="email" name="email" placeholder="Enter your email"
                                     autocomplete="email" required autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -42,9 +41,6 @@
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                    <a href="{{ url('auth/forgot-password-basic') }}">
-                                        <small>Forgot Password?</small>
-                                    </a>
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password"

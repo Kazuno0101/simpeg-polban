@@ -15,6 +15,16 @@ class DosenSeeder extends Seeder
      */
     public function run()
     {
-        Dosen::factory()->count(50)->create();
+        // add dosen admin
+        Dosen::create([
+            'nama' => 'Admin',
+            'email' => 'admin@polban.com',
+            'password' => bcrypt('admin'),
+            'nip' => '123456789012345678',
+            'nidn' => '1234567890',
+            'unit_kerja_id' => 1,
+            'jabatan_fungsional_id' => 1,
+            'jabatan_struktural_id' => 1,
+        ]);
     }
 }

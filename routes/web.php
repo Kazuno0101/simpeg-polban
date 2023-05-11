@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,3 +88,7 @@ Route::get('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@index')->nam
 Route::post('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@store')->name('dosen.store');
 Route::put('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@update')->name('dosen.update');
 Route::delete('/simpeg/dosen/{id}', $controller_path . '\simpeg\dosen\dosen@destroy')->name('dosen.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
