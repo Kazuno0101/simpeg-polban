@@ -11,8 +11,9 @@ class Pemberhentian extends Controller
 {
     public function index()
     {
-        $pengajuan = PengajuanPemberhentian::all();
-        $dosen = Dosen::all();
-        return view('content.simpeg.pemberhentian', compact('pengajuan','dosen'));
+        $data['pengajuan'] = PengajuanKenaikanJabatan::all();
+        $data['dosen'] = Dosen::all();
+
+        return view('content.simpeg.pemberhentian.index', $data);
     }
 }

@@ -81,6 +81,9 @@ Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tab
 
 Route::get('/simpeg/pensiun', $controller_path . '\simpeg\pensiun\pensiun@index')->name('simpeg-pensiun');
 Route::get('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@index')->name('simpeg-kenaikan');
+Route::post('/simpeg/kenaikan', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@store')->name('kenaikan.store');
+Route::put('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@update')->name('kenaikan.update');
+Route::delete('/simpeg/kenaikan/{id}', $controller_path . '\simpeg\kenaikan_jabatan\kenaikanjabatan@destroy')->name('kenaikan.destroy');
 Route::get('/simpeg/mutasi', $controller_path . '\simpeg\mutasi\mutasi@index')->name('simpeg-mutasi');
 Route::get('/simpeg/pemberhentian', $controller_path . '\simpeg\pemberhentian\pemberhentian@index')->name('simpeg-pemberhentian');
 Route::get('/simpeg/dosen', $controller_path . '\simpeg\dosen\dosen@index')->name('simpeg-dosen');
