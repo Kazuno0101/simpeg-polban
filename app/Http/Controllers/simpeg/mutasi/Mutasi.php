@@ -6,6 +6,7 @@ use App\Models\PengajuanMutasi;
 use App\Models\Dosen;
 use App\Models\UnitKerja;
 use App\Http\Controllers\Controller;
+use App\Models\PengajuanKenaikanJabatan;
 use Illuminate\Http\Request;
 
 class Mutasi extends Controller

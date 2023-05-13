@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\PengajuanKenaikanJabatan;
+use Illuminate\Support\Facades\Mail;
 
 class KenaikanJabatanObserver
 {
@@ -33,7 +34,7 @@ class KenaikanJabatanObserver
     public function updated(PengajuanKenaikanJabatan $pengajuanKenaikanJabatan)
     {
         //
-        dd($pengajuanKenaikanJabatan);
+        Mail::to($pengajuanKenaikanJabatan->dosen->email)->send(new \App\Mail\KenaikanJabatan($pengajuanKenaikanJabatan));
     }
 
     /**

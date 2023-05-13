@@ -27,7 +27,9 @@ class KenaikanJabatan extends Controller
             'alasan' => 'required',
         ]);
         //add data jabatan_asal_id to request
-        $request->request->add(['jabatan_asal_id' => auth()->user()->jabatan_fungsional_id]);
+        $request->request->add(['jabatan_asal_id' => 
+            Dosen::find($request->dosen_id)->jabatan_fungsional_id
+        ]);
         //add data tanggal_pengajuan to request with date now
         $request->request->add(['tanggal_pengajuan' => date('Y-m-d H:i:s')]);
         //add data status to request

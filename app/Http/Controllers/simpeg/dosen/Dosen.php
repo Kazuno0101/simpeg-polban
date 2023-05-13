@@ -86,6 +86,8 @@ class Dosen extends Controller
         $dosen->jabatan_fungsional_id = $request->input('jabatan_fungsional_id');
         $dosen->jabatan_struktural_id = $request->input('jabatan_struktural_id');
 
+        $dosen->save();
+
         // redirect
         return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil diubah');
     }
