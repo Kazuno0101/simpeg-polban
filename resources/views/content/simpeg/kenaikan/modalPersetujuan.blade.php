@@ -12,13 +12,13 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <form method="POST" action="{{ route('kenaikan.persetujuan', $item->id) }}">
                     @csrf
-                    @method('PUT')
+                    @method('PATCH')
                     <input type="hidden" name="status" value='ditolak'>
                     <button type="submit" class="btn btn-danger">Tolak</button>
                 </form>
                 <form method="POST" action="{{ route('kenaikan.persetujuan', $item->id) }}">
                     @csrf
-                    @method('PUT')
+                    @method('PATCH')
                     <input type="hidden" name="status" value='disetujui'>
                     <button type="submit" class="btn btn-success">Setuju</button>
                 </form>

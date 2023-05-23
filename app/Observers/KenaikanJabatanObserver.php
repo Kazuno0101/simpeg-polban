@@ -33,8 +33,15 @@ class KenaikanJabatanObserver
      */
     public function updated(PengajuanKenaikanJabatan $pengajuanKenaikanJabatan)
     {
-        //
+        // email dosen ybs
         Mail::to($pengajuanKenaikanJabatan->dosen->email)->send(new \App\Mail\KenaikanJabatan($pengajuanKenaikanJabatan));
+
+        // check if disetujui then update jabatan
+        if ($pengajuanKenaikanJabatan->status == 'disetujui') {
+            $pengajuanKenaikanJabatan->dosen->update([
+                'jabatan_fungsional_id' => $pengajuanKenaikanJabatan->jabatan_tujuan_id,
+            ]);
+        }
     }
 
     /**

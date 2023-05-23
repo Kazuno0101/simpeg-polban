@@ -19,7 +19,7 @@
       "name": "Kenaikan Jabatan",
       "icon": "menu-icon tf-icons bx bx-box",
       "slug": "kenaikan",
-      "url": "/simpeg/kenaikan"
+      "url": "/kelola-kenaikanjafa"
     },
     {
       "name": "Pensiun",
@@ -40,7 +40,7 @@
       "name": "Dosen",
       "icon": "menu-icon tf-icons bx bx-collection",
       "slug": "Mutasi",
-      "url": "/simpeg/dosen"
+      "url": "/kelola-dosen"
     }
   ]
 }

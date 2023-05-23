@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="nidn">NIDN
-                                <span class="text-danger">*</span>
+                                <span class="text-danger">* (10 digit angka)</span>
                             </label>
                             <input name="nidn" type="text" class="form-control" id="nidn" required>
                         </div>
@@ -23,7 +23,9 @@
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nip">NIP</label>
+                        <label for="nip">NIP
+                            <span class="text-danger">* (18 digit angka)</span>
+                        </label>
                         <input name="nip" type="text" class="form-control" id="nip">
                     </div>
                     <hr />

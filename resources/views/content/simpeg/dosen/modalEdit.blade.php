@@ -37,7 +37,7 @@
                     <div class="form-group mb-3">
                         <label for="password">Password Baru
                         </label>
-                        <input name="password" type="password" class="form-control" id="password" required>
+                        <input name="password" type="password" class="form-control" id="password">
                     </div>
                     <hr />
                     <div class="form-group mb-3">

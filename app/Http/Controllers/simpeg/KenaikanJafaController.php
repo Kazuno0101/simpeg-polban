@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\simpeg\kenaikan_jabatan;
+namespace App\Http\Controllers\Simpeg;
 
-use App\Models\PengajuanKenaikanJabatan;
+use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use App\Models\Jabatan;
-use App\Http\Controllers\Controller;
+use App\Models\PengajuanKenaikanJabatan;
 use Illuminate\Http\Request;
 
-class KenaikanJabatan extends Controller
+class KenaikanJafaController extends Controller
 {
+    //
     public function index()
     {
         $data['pengajuan'] = PengajuanKenaikanJabatan::all();
@@ -17,7 +18,7 @@ class KenaikanJabatan extends Controller
         $data['jabatan'] = Jabatan::where('tipe', 'fungsional')->get();
 
         return view('content.simpeg.kenaikan.index', $data);
-    }    
+    }
 
     public function store(Request $request)
     {
@@ -27,8 +28,8 @@ class KenaikanJabatan extends Controller
             'alasan' => 'required',
         ]);
         //add data jabatan_asal_id to request
-        $request->request->add(['jabatan_asal_id' => 
-            Dosen::find($request->dosen_id)->jabatan_fungsional_id
+        $request->request->add(['jabatan_asal_id' =>
+            Dosen::find($request->dosen_id)->jabatan_fungsional_id,
         ]);
         //add data tanggal_pengajuan to request with date now
         $request->request->add(['tanggal_pengajuan' => date('Y-m-d H:i:s')]);
@@ -39,14 +40,14 @@ class KenaikanJabatan extends Controller
         PengajuanKenaikanJabatan::create($request->all());
 
         // redirect
-        return redirect()->route('simpeg-kenaikan')->with('success', 'Data pengajuan berhasil ditambahkan');
+        return redirect()->route('kenaikan')->with('success', 'Data pengajuan berhasil ditambahkan');
     }
 
     public function update(Request $request, $id)
     {
         //
         $pengajuan = PengajuanKenaikanJabatan::findOrFail($id);
-        
+
         // validate
         $request->validate([
             'dosen_id' => 'required',
@@ -59,10 +60,10 @@ class KenaikanJabatan extends Controller
         // update without events
         PengajuanKenaikanJabatan::withoutEvents(function () use ($request, $pengajuan) {
             $pengajuan->update($request->all());
-        });        
+        });
 
         // redirect
-        return redirect()->route('simpeg-kenaikan')->with('success', 'Data pengajuan berhasil diubah');
+        return redirect()->route('kenaikan')->with('success', 'Data pengajuan berhasil diubah');
     }
 
     public function verifikasi(Request $request, $id)
@@ -81,7 +82,7 @@ class KenaikanJabatan extends Controller
         $pengajuan->update($request->all());
 
         // redirect
-        return redirect()->route('simpeg-kenaikan')->with('success', 'Data verifikasi berhasil diubah');
+        return redirect()->route('kenaikan')->with('success', 'Data verifikasi berhasil diubah');
     }
 
     public function persetujuan(Request $request, $id)
@@ -99,7 +100,7 @@ class KenaikanJabatan extends Controller
         $pengajuan->update($request->all());
 
         // redirect
-        return redirect()->route('simpeg-kenaikan')->with('success', 'Data persetujuan berhasil diubah');
+        return redirect()->route('kenaikan')->with('success', 'Data persetujuan berhasil diubah');
     }
 
     public function destroy($id)
@@ -111,6 +112,6 @@ class KenaikanJabatan extends Controller
         $pengajuan->delete();
 
         // redirect
-        return redirect()->route('simpeg-kenaikan')->with('success', 'Data pengajuan berhasil dihapus');
+        return redirect()->route('kenaikan')->with('success', 'Data pengajuan berhasil dihapus');
     }
 }

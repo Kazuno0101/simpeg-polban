@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\simpeg\dosen;
+namespace App\Http\Controllers\Simpeg;
 
 use App\Http\Controllers\Controller;
-use App\Models\Dosen as ModelsDosen;
+use App\Models\Dosen;
 use App\Models\Jabatan;
 use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 
-class Dosen extends Controller
+class DosenController extends Controller
 {
+    //
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +21,7 @@ class Dosen extends Controller
         //
         $data['jabatan'] = Jabatan::all();
         $data['unit_kerja'] = UnitKerja::all();
-        $data['dosen'] = ModelsDosen::all();
+        $data['dosen'] = Dosen::all();
 
         return view('content.simpeg.dosen.index', $data);
     }
@@ -36,19 +37,18 @@ class Dosen extends Controller
         // validate
         $request->validate([
             'nama' => 'required',
-            'nidn' => 'required|unique:dosen',
-            // nip is nullable but unique
-            'nip' => 'nullable|unique:dosen',
+            'nidn' => 'required|unique:dosen|digits:10',
+            'nip' => 'nullable|unique:dosen|digits:18',
             'unit_kerja_id' => 'required',
             'jabatan_fungsional_id' => 'required|exists:jabatan,id',
             'jabatan_struktural_id' => 'exists:jabatan,id',
         ]);
 
         // store
-        ModelsDosen::create($request->all());
+        Dosen::create($request->all());
 
         // redirect
-        return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil ditambahkan');
+        return redirect()->route('dosen')->with('success', 'Data dosen berhasil ditambahkan');
     }
 
     /**
@@ -61,7 +61,7 @@ class Dosen extends Controller
     public function update(Request $request, $id)
     {
         //
-        $dosen = ModelsDosen::findOrFail($id);
+        $dosen = Dosen::findOrFail($id);
 
         // validate
         $request->validate([
@@ -76,7 +76,7 @@ class Dosen extends Controller
 
         // update
         $dosen->email = $request->input('email');
-        if($request->input('password')){
+        if ($request->input('password')) {
             $dosen->password = bcrypt($request->input('password'));
         }
         $dosen->nama = $request->input('nama');
@@ -89,7 +89,7 @@ class Dosen extends Controller
         $dosen->save();
 
         // redirect
-        return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil diubah');
+        return redirect()->route('dosen')->with('success', 'Data dosen berhasil diubah');
     }
 
     /**
@@ -101,12 +101,12 @@ class Dosen extends Controller
     public function destroy($id)
     {
         //
-        $dosen = ModelsDosen::findOrFail($id);
+        $dosen = Dosen::find($id);
 
         // delete
         $dosen->delete();
 
         // redirect
-        return redirect()->route('simpeg-dosen')->with('success', 'Data dosen berhasil dihapus');
+        return redirect()->route('dosen')->with('success', 'Data dosen berhasil dihapus');
     }
 }
